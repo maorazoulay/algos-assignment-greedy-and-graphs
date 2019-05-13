@@ -1,6 +1,6 @@
 /**
  * Physics Experiment
- * Author: Your Name and Carolyn Yao
+ * Author: Maor Azoulay and Carolyn Yao
  * Does this compile or finish running within 5 seconds? Y/N
  */
 
@@ -11,7 +11,7 @@
  * solution.
  *
  * You will only be graded on code you add to the scheduleExperiments method.
- * Do not mess with the existing formatting and identation.
+ * Do not mess with the existing formatting and indentation.
  * You don't need to use the helper methods, but if they come in handy setting
  * up a custom test case, feel free to use them.
  */
@@ -36,8 +36,41 @@ public class PhysicsExperiment {
     // Your scheduleTable is initialized as all 0's so far. Your code will put 1's
     // in the table in the right places based on the return description
     int[][] scheduleTable = new int[numStudents + 1][numSteps + 1];
+    int max = 0;
+    int currentStep = 1;
+    int k = 0, maxConsecutive = 0, consecutive = 0;
 
-    // Your code goes here
+    while(currentStep <= numSteps){
+      //System.out.println("the value of currentStep is " + currentStep);
+      for (int i = 1; i < signUpTable.length; i++) { //loop through students
+        //System.out.println("the value of i is " + i);
+          if (signUpTable[i][currentStep] == 1) {//The student can do current step, now count how many more he can do consecutively
+            //System.out.println("signUpTable[i][currentStep] == 1 true for step " + currentStep);
+            k = currentStep;
+            System.out.println("the value of k is " + k);
+            while (k < signUpTable[i].length && signUpTable[i][k] == 1 ) {
+              consecutive++;
+              k++;
+            }//System.out.println("the value of consecutive is " + consecutive);
+          }
+
+        if (consecutive > maxConsecutive) {
+          maxConsecutive = consecutive;
+          max = i;
+        }
+        consecutive = 0;
+      }
+      for (int i = 0; i < maxConsecutive; i++) {
+        scheduleTable[max][currentStep + i] = 1;
+      }
+      currentStep += maxConsecutive;
+      maxConsecutive = 0;
+//      for (int i = 0; i < scheduleTable.length; i++) {
+//        for (int j = 0; j < scheduleTable[i].length; j++) {
+//          System.out.println();
+//        }
+//      }
+    }
 
     return scheduleTable;
   }
