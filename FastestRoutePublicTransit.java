@@ -1,6 +1,6 @@
 /**
  * Public Transit
- * Author: Your Name and Carolyn Yao
+ * Author: Maor Azoulay and Carolyn Yao
  * Does this compile? Y/N
  */
 
